@@ -5,6 +5,14 @@ import { cn } from '~/lib/utils'
 
 
 const NavItems = () => {
+
+    const user = {
+        name: 'Faisal',
+        email: 'fk908801@gmail.com',
+        imageUrl: '/assets/images/david.webp'
+    }
+
+
   return (
     <section className='nav-items'>
 
@@ -31,6 +39,21 @@ const NavItems = () => {
                 ))}
 
             </nav>
+
+
+            <footer className='nav-footer'>
+                <img src={user?.imageUrl || '/assets/images/david.webp'} alt={user?.name || 'David'} />
+
+                <article>
+                    <h2>{user?.name}</h2>
+                    <p>{user?.email}</p>
+                </article>
+
+
+                <button className='cursor-pointer' onClick={() => console.log('Hi How Are You!!!!')}>
+                    <img src="/assets/icons/logout.svg" alt="logout" className='size-6'/>
+                </button>
+            </footer>
         </div>
 
 
