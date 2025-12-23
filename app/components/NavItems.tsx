@@ -4,7 +4,7 @@ import { sidebarItems } from '~/constants'
 import { cn } from '~/lib/utils'
 
 
-const NavItems = () => {
+const NavItems = ({clicko}) => {
 
     const user = {
         name: 'Faisal',
@@ -27,7 +27,7 @@ const NavItems = () => {
 
                 {sidebarItems.map(({id, href, icon, label}) => (
 
-                    <NavLink to={href} key={id}>
+                    <NavLink to={href} key={id} onClick={clicko}>
                         {({ isActive }: { isActive: boolean }) => (
                             <div className={cn('group nav-items flex items-center flex-row gap-4 p-4 rounded-sm', {'bg-primary-100 !text-white' : isActive})}>
                                 <img src={icon} alt={label} className={`size-7 group-hover:invert ${isActive ? 'brightness-0 invert' : 'text-dark-200'}`}/>
@@ -53,6 +53,8 @@ const NavItems = () => {
                 <button className='cursor-pointer' onClick={() => console.log('Hi How Are You!!!!')}>
                     <img src="/assets/icons/logout.svg" alt="logout" className='size-6'/>
                 </button>
+
+                
             </footer>
         </div>
 
