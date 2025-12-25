@@ -1,20 +1,11 @@
 import { Header, StatsCard, TripCard } from '~/components';
 import React from 'react'
-
-const dashboard = () => {
-
-  const user = {name: 'Faisal'};
-
-  const dashboardStats = {
-    totalUsers: 12450,
-    userJoined: { currentMonth: 218, lastMonth: 176},
-    totalTrips: 3210,
-    tripsCreated: { currentMonth: 150, lastMonth: 250},
-    userRole: { total: 62, currentMonth: 25, lastMonth: 15}
-  }
+import { user, allTrips, users, dashboardStats } from '~/constants';
 
 
+const {totalUsers, userJoined, totalTrips, tripsCreated, userRole} = dashboardStats;
 
+const Dashboard = () => {
 
   return (
     <main className='dashboard wrapper'>
@@ -29,25 +20,25 @@ const dashboard = () => {
 
           <StatsCard 
           headerTitle="Total Users"
-          total={dashboardStats.totalUsers}
-          currentMonthCount={dashboardStats.userJoined.currentMonth}
-          lastMonthCount={dashboardStats.userJoined.lastMonth}
+          total={totalUsers}
+          currentMonthCount={userJoined.currentMonth}
+          lastMonthCount={userJoined.lastMonth}
           />
 
 
           <StatsCard 
           headerTitle="Total Trips"
-          total={dashboardStats.totalTrips}
-          currentMonthCount={dashboardStats.tripsCreated.currentMonth}
-          lastMonthCount={dashboardStats.tripsCreated.lastMonth}
+          total={totalTrips}
+          currentMonthCount={tripsCreated.currentMonth}
+          lastMonthCount={tripsCreated.lastMonth}
           />
 
 
           <StatsCard 
           headerTitle="Active Users"
-          total={dashboardStats.userRole.total}
-          currentMonthCount={dashboardStats.userRole.currentMonth}
-          lastMonthCount={dashboardStats.userRole.lastMonth}
+          total={userRole.total}
+          currentMonthCount={userRole.currentMonth}
+          lastMonthCount={userRole.lastMonth}
           />
 
         </div>
@@ -55,11 +46,21 @@ const dashboard = () => {
       </section>
 
 
+      <section className='container'>
 
-      <TripCard />
+        <h1 className='text-xl font-semibold text-dark-100'>Created Trips</h1>
+
+        <div className="trip-grid">
+          {allTrips.slice(0, 4).map(({id, name, imageUrls, itinerary, tags, estimatedPrice}) => (
+            <TripCard key={id} id={id.toString()} name={name} imageUrl={imageUrls[0]} location={itinerary?.[0]?.location ?? ''} tags={tags} price={estimatedPrice} />
+          ))}
+        </div>
+      </section>
+
+
 
     </main>
   )
 }
 
-export default dashboard
+export default Dashboard
